@@ -1,6 +1,9 @@
 # trading-card-arb
 mini project for scraping and interpreting market data for ever popular trading cards
 
+For japanese cards, there exists price differences between the japanese market and international market. This project will identify significant differences and publish them.
+
+For english and japanese cards, there exists a huge price difference between raw and graded cards. This project will identify high performers and publish them.
 
 Project Architecture
 trading-card-arb/

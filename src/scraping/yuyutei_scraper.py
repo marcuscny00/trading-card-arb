@@ -1,8 +1,6 @@
-# %%
 import requests
-# %%
 from bs4 import BeautifulSoup as BS
-# %%
+
 headers = {
     "User-Agent" : (
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -11,14 +9,12 @@ headers = {
     )
 }
 
-# %% # Go to website
+# Go to website
 url = requests.get("https://yuyu-tei.jp/sell/poc/s/m03", headers=headers, timeout = 10 )
 # print(url.status_code)
-# %%
 soup = BS(url.content, "html.parser")
-# %%
-cards = soup.find_all("div", class_="card-product position-relative mt-4")
-#%%
+# cards = soup.find_all("div", class_="card-product position-relative mt-4")
+cards = soup.find_all("div", class_="col-md")
 card_list = []
 
 for card in cards:
@@ -49,18 +45,3 @@ for card in cards:
     card_dict['Price'] = price
 
     card_list.append(card_dict)
-
-
-# %%
-# Read Text/HTML Content
-# print(url.headers)
-# print(url.text)
-
-# %%
-# Parse HTML Content/ Extract Prices
-
-# %%
-# Return Prices as List cleanly
-
-
-
