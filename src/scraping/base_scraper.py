@@ -1,5 +1,5 @@
 import requests
-from requests.exceptions import HTTPError
+from requests.exceptions import HTTPError, Timeout, RequestException
 import yaml
 from pathlib import Path
 
@@ -18,10 +18,16 @@ def load_sites_config():
     with open(config_path, "r", encoding="utf-8") as file:
         return yaml.safe_load(file)
     
-def fetch_html(yaml_url,headers,timeout = 10):
-    url = requests.get(yaml_url, headers=headers, timeout = timeout )
+def fetch_html(url,headers,timeout = 10):
+
     try:
-        url.raise_for_status()
-        return url.content
+        response = requests.get(url, headers=headers, timeout = timeout )
+        response.raise_for_status()
+        return response.content
+    
     except HTTPError as http_err:
         print(f"HTTP error occurred: {http_err}") 
+    except Timeout:
+        print(f"[TIMEOUT] {url}")
+    except RequestException as req_err:
+        print(f"Request error occurred: {req_err}")

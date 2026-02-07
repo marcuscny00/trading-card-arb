@@ -2,4 +2,5 @@
 
 sites:
   yuyutei:
+    urls:
       - "https://yuyu-tei.jp/sell/poc/s/sv08a" #Terastal Festival
